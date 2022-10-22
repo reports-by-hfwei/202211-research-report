@@ -1,0 +1,125 @@
+% strong.tex
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+  \begin{center}
+    {\Large Adding Strong Transactions}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Requirement: \conflictaxiom}
+  \begin{center}
+    \[
+       \forall t_{1}, t_{2} \in \strongtxs.\;
+       t_{1} \conflict t_{2} \implies t_{1} \prec t_{2} \lor t_{2} \prec t_{1}.
+    \]
+
+    Each strong transaction is assigned a scalar \red{strong timestamp}.
+
+    \[
+      \commitVC \in [\D \cup \set{\strongentry} \to \N]
+    \]
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Metadata for Strong Transactions}
+  \begin{center}
+    \[
+      \knownVC \in [\D \cup \set{\strongentry} \to \N]
+    \]
+
+    \begin{property}[Property of {$\knownVC[\strongentry]$}]
+      \begin{center}
+        \red{Replica $p^{m}_{d}$} stores the updates to $m$ by all strong transactions \\[3pt]
+        with $\commitVC[\strongentry] \le \knownVC[\strongentry]$.
+      \end{center}
+    \end{property}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Metadata for Strong Transactions}
+  \begin{center}
+    \[
+      \stableVC \in [\D \cup \set{\strongentry} \to \N]
+    \]
+
+    \fig{width = 0.80\textwidth}{figs/knownvc-local-strong}
+
+    \begin{property}[Property of {$\stableVC[\strongentry]$}]
+      \begin{center}
+        \red{Data center $d$} stores the updates by all strong transactions \\[3pt]
+        with $\commitVC[\strongentry] \le \knownVC[\strongentry]$.
+      \end{center}
+    \end{property}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Metadata for Strong Transactions}
+  \begin{center}
+    \[
+      \uniformVC \in [\D \to \N]
+    \]
+
+    \fig{width = 0.80\textwidth}{figs/stablevc-uniformvc-strong}
+
+    \vspace{0.30cm}
+    The commit protocol for strong transactions \\[3pt]
+    guarantees their uniformity.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Strong Consistency Protocol: Commit}
+  \begin{center}
+    \fig{width = 0.70\textwidth}{figs/commit-strong}
+
+    \vspace{0.50cm}
+    A strong transaction only needs to wait for causal transactions \\[3pt]
+    originating at the \red{local} data center to become uniform.
+    \vspace{0.30cm}
+
+    \fig{width = 0.45\textwidth}{figs/uniform-barrier}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Strong Consistency Protocol: Commit}
+  \begin{center}
+    \fig{width = 0.80\textwidth}{figs/commit-strong}
+    \vspace{-0.30cm}
+    \[
+      \langle d \in \set{\commit, \abort}, vc \rangle \gets \certify(t)
+    \]
+
+    \pause
+    \begin{columns}
+      \column{0.45\textwidth}
+        \fig{width = 1.00\textwidth}{figs/tcs}
+      \column{0.55\textwidth}
+        \fig{width = 1.00\textwidth}{figs/multicast}
+    \end{columns}
+
+    \vspace{0.50cm}
+    2PC across partitions + Paxos among replicas of each partition \\[3pt]
+    uses white-box optimizations that minimize the commit latency
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Strong Consistency Protocol: Deliver}
+  \begin{center}
+    \fig{width = 0.70\textwidth}{figs/deliver}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
