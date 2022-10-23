@@ -2,15 +2,54 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
+	\begin{center}
+		集中式数据库 \emph{vs.} 分布式数据库
+
+		\fig{width = 0.65\textwidth}{figs/Centralized-vs-Decentralized}
+
+		% \begin{columns}[c]
+		% 	\column{0.50\textwidth}
+		% 	% \fig{width = 0.75\textwidth}{figs/centralized}
+		% 	\column{0.50\textwidth}
+		% 	\fig{width = 0.75\textwidth}{figs/sina-weibo-world-map}
+		% \end{columns}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		``数据分区 + 数据副本'' 系统架构
+		\fig{width = 0.60\textwidth}{figs/partition-replication}
+		\red{数据一致性问题}
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{}
+	\begin{center}
+		强一致性、高可用性、延迟、分区容忍性四者之间的权衡关系
+	\end{center}
 	\begin{columns}[c]
-		\column{0.50\textwidth}
-		% \fig{0.75\textwidth}{figs/centralized}
-		\column{0.50\textwidth}
-		% \fig{0.75\textwidth}{figs/distributed}
+		\column{0.60\textwidth}
+		\begin{center}
+			\fig{width = 0.50\textwidth}{figs/cap-theorem.png}
+			{CAP Theorem}%~\ncite{}
+		\end{center}
+		\column{0.40\textwidth}
+		\begin{center}
+			\fig{width = 0.95\textwidth}{figs/pacelc-tradeoff}
+
+			\vspace{0.50cm}
+			{PACELC Tradeoff\\ \ncite{abadi:computer12}}
+		\end{center}
 	\end{columns}
 
+	\vspace{0.50cm}
 	\begin{center}
-		\red{数据一致性问题}
+		使用强弱不同的数据一致性模型刻画不同的权衡
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -19,21 +58,31 @@
 \begin{frame}{}
 	\begin{columns}[c]
 		\column{0.50\textwidth}
-		% \fig{0.75\textwidth}{figs/cap}
+		\fig{width = 0.90\textwidth}{figs/consistency-model-tree}
 		\column{0.50\textwidth}
-		% \fig{0.75\textwidth}{figs/pacele}
+		\fig{width = 1.00\textwidth}{figs/consistency-models-csur2016}
 	\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
-	\begin{description}
-		\item[理论基础:]
-		\item[协议设计:]
-		\item[协议验证:]
-		\item[系统测试:]
-	\end{description}
+	\begin{center}
+		以数据一致性模型为核心的数据一致性理论
+	\end{center}
+
+	\begin{columns}
+		\column{0.10\textwidth}
+		\column{0.80\textwidth}
+		\begin{description}
+			\setlength{\itemsep}{8pt}
+			\item[理论基础:] 什么是不可能的? 下界是什么?
+			\item[协议设计:] 如何设计容错、高可扩展、高性能的协议?
+			\item[系统测试:] 复杂度是多少? 如何设计高效的测试算法?
+			\item[协议验证:] TODO:
+		\end{description}
+		\column{0.10\textwidth}
+	\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -48,11 +97,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		读写寄存器 (Read/Write Register) \\[6pt]
-		(Since $2012$)
+		研究工作第一阶段 ($\ge 2012$)：读写寄存器 (Read/Write Register) \\[6pt]
 
-		分布式 NoSQL Key-Value 数据库
-		%   \fig{width = 0.60\textwidth}{figs/}
+		\fig{width = 0.60\textwidth}{figs/dsss}
+		分布式 NoSQL Key-Value 数据库 (TODO: 重新画图)
+
+		TODO: +research outcomes
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -60,10 +110,17 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		复制数据类型 (Replicated Data Types) \\[6pt]
-		(Since $2017$)
+		研究工作第二阶段 ($\ge 2017$)：复制数据类型 (Replicated Data Types) \\[6pt]
 
-		% Jupiter/Redis/Riak
+		\begin{columns}[c]
+			\column{0.50\textwidth}
+			\fig{width = 0.80\textwidth}{figs/coeditor}
+			\column{0.50\textwidth}
+			% \fig{width = 0.80\textwidth}{figs/rdt-dbs}
+			TODO: Jupiter/Redis/Riak
+		\end{columns}
+
+		TODO: +research outcomes
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -71,11 +128,10 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		分布式事务 (Distributed Transactions) \\[6pt]
-		(Since $2020$)
+		研究工作第二阶段 ($\ge 2020$)：分布式事务 (Distributed Transactions)
 
-		+ research outcomes
-		% logos
+		TODO: +research outcomes
+		TODO: +logos
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
