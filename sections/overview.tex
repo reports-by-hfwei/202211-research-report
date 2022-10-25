@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		集中式数据库 \emph{vs.} 分布式数据库
+		Centralized Databases \emph{vs.} Distributed Databases
 
 		\fig{width = 0.65\textwidth}{figs/Centralized-vs-Decentralized}
 
@@ -20,9 +20,9 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		``数据分区 + 数据副本'' 系统架构
+		``Data Partition + Data Replication''
 		\fig{width = 0.60\textwidth}{figs/partition-replication}
-		\red{数据一致性问题}
+		\red{Data Consistency Problem}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -30,7 +30,8 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		强一致性、高可用性、延迟、分区容忍性四者之间的权衡关系
+		(Strong) \underline{\red{C}}onsistency, \underline{\red{A}}vailability,
+		\underline{\red{L}}atency、\underline{\red{P}}atition tolerance
 	\end{center}
 	\begin{columns}[c]
 		\column{0.60\textwidth}
@@ -43,7 +44,7 @@
 			\fig{width = 0.95\textwidth}{figs/pacelc-tradeoff}
 
 			\vspace{0.50cm}
-			{PACELC Tradeoff\\ \ncite{abadi:computer12}}
+			{PACELC Tradeoff}
 		\end{center}
 	\end{columns}
 \end{frame}
@@ -52,7 +53,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		使用强弱不同的数据一致性模型刻画不同的权衡
+		Use \blue{consistency models} to capture these tradeoffs
 	\end{center}
 
 	\begin{columns}[c]
@@ -67,17 +68,17 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		以数据一致性模型为核心的数据一致性理论
+		The theory of data consistency around consistency models:
 	\end{center}
 
 	\begin{columns}
 		\column{0.10\textwidth}
 		\column{0.80\textwidth}
-		\begin{description}
+		\begin{description}[Computability]
 			\setlength{\itemsep}{8pt}
-			\item[理论基础:] 什么是不可能的? 下界是什么?
-			\item[协议设计:] 如何设计容错、高可扩展、高性能的协议?
-			\item[系统测试:] 复杂度是多少? 如何设计高效的测试算法?
+			\item[Computability:] What is possible or impossible?
+			\item[Protocol:] How to design fast, scalable, and fault-tolerant protocols?
+			\item[Testing:] What is the complexity? \\[3pt] How to design efficient testing algorihthms?
 				% \item[协议验证:] TODO:
 		\end{description}
 		\column{0.10\textwidth}
@@ -86,7 +87,7 @@
 	\pause
 	\vspace{0.60cm}
 	\begin{center}
-		经典的分布式计算理论在技术发展的需求导向下与时俱进
+		Classic problems with the ever-changing requirements
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -94,7 +95,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		研究工作第一阶段 ($\ge 2012$)：读写寄存器 (Read/Write Register) \\[6pt]
+		Research I ($\ge 2012$): Read/Write Register (读写寄存器) \\[6pt]
 
 		\fig{width = 0.60\textwidth}{figs/dsss}
 		分布式 NoSQL Key-Value 数据库 (TODO: 重新画图)
@@ -107,7 +108,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		研究工作第二阶段 ($\ge 2017$)：复制数据类型 (Replicated Data Types) \\[6pt]
+		Research II ($\ge 2017$): Replicated Data Types (复制数据类型) \\[6pt]
 
 		\begin{columns}[c]
 			\column{0.50\textwidth}
@@ -125,7 +126,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{}
 	\begin{center}
-		研究工作第二阶段 ($\ge 2020$)：分布式事务 (Distributed Transactions)
+		Research III ($\ge 2020$): Distributed Transactions (分布式事务)
 
 		TODO: +research outcomes
 		TODO: +logos
