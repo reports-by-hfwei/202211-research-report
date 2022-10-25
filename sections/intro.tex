@@ -26,8 +26,10 @@
     介于\blue{(事务) 因果一致性}与\blue{可串行化}之间
 
     \vspace{1.20cm}
-    \red{关键挑战 (一):} 在容错的情况下保证系统的活性 (liveness) \\[10pt]
-    \red{关键挑战 (二):} 严格的正确性证明
+    \begin{description}
+      \item[\red{关键挑战 (一):}] 在容错的情况下保证系统的活性 (liveness) \\[10pt]
+      \item[\red{关键挑战 (二):}] 严格的协议正确性证明
+    \end{description}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -40,8 +42,11 @@
     \red{ATC'2021 (CCF A)}
 
     \vspace{1.20cm}
-    负责\blue{严格的正确性证明}工作 \\ (完成 \textsf{arXiv} 完整版本中的20页证明) \\[12pt]
-    在证明过程中发现协议中一处\red{较为严重的错误} \\ (同样存在于经典协议中)
+    负责\blue{严格的正确性证明}工作 \\[3pt]
+    (完成 \textsf{arXiv} 完整版本中的20页证明) \\[12pt]
+
+    在证明过程中发现协议中一处\red{较为严重的错误} \\[3pt]
+    (同样存在于经典协议中)
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -75,7 +80,7 @@
 
     \pause
     \vspace{0.30cm}
-    只有 \textsc{withdraw} 需要使用强一致性, 按某种顺序执行.
+    只有 \textsc{withdraw} 需要使用强一致性, 按某种顺序执行
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -87,18 +92,18 @@
     \red{Partial Order-Restrictions} (\por) consistency~\purple{
       \footnotesize [Li@ACT'2018]}
 
-    \vspace{0.60cm}
-    \begin{enumerate}[(I)]
-      \centering
-      \item 默认情况下, 使用事务因果一致性
-      \item 允许用户定义事务之间的冲突关系, 并使用可串行化顺序执行
-    \end{enumerate}
+    \vspace{0.80cm}
+    \begin{description}[(II)]
+      \setlength{\itemsep}{8pt}
+      \item[(I)] 默认情况下, 使用事务因果一致性
+      \item[(II)] 允许用户定义事务之间的冲突关系; 冲突事务按顺序执行
+    \end{description}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Consistency Model of \unistore}
+\begin{frame}{}
   \begin{definition}[Session Order]
     A transaction $t_{1}$ precedes a transaction $t_{2}$
     in the \red{session order}, denoted \red{$t_{1} \rel{\so} t_{2}$},
@@ -201,15 +206,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Design Challenge of \unistore{} (I)}
   \begin{center}
-    {Data center $d_{1}$ crashes \\[3pt]
-      before $\causalcolor{t_{1}}$ is replicated to correct data center $d_{3}$.}
+    $d_{1}$ 本地提交了事务 $t_{1}$, \\[3pt]
+    但在将 $t_{1}$ 复制到 $d_{3}$ 之前, $d_{1}$ 出现故障
 
     \vspace{0.20cm}
     \fig{width = 0.70\textwidth}{figs/liveness-causal}
 
     \pause
-    Transaction $t_{2}$ (at correct data center $d_{2}$) \\[3pt]
-    may never become visible at correct data center $d_{3}$.
+    事务 $t_{2}$ 依赖于 $t_{1}$, \\[3pt]
+    因此, 在 $d_{3}$ 上, $t_{2}$ 可能永远不可见, 违反``活性''要求
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -217,15 +222,14 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Fault-tolerance of \unistore{} (I)}
   \begin{center}
-    Data center $d_{1}$ crashes \\[3pt]
-    before $\causalcolor{t_{1}}$ is replicated to correct data center $d_{3}$.
+    $d_{1}$ 本地提交了事务 $t_{1}$, \\[3pt]
+    但在将 $t_{1}$ 复制到 $d_{3}$ 之前, $d_{1}$ 出现故障
 
     \vspace{0.20cm}
     \fig{width = 0.70\textwidth}{figs/liveness-causal}
 
     \pause
-    Data center $d_{2}$ need to \red{forward} causal transactions \\[3pt]
-    to other data centers.
+    事务 $t_{2}$ 依赖于 $t_{1}$, $d_{2}$ 需要向 $d_{3}$ \red{转发} $t_{1}$
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
