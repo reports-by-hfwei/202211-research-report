@@ -1,54 +1,54 @@
 % intro.tex
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Overview of the Work on \unistore}
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/unistore-atc21}
     \vspace{0.20cm}
     \red{ATC'2021 (CCF A)}
 
     \vspace{1.00cm}
-    \unistore{} is the first fault-tolerant and scalable transactional data store
-    that combines causal and strong consistency.
+    \unistore{} is the first \red{fault-tolerant} and scalable \cyan{transactional} data store
+    that \blue{combines causal and strong consistency}.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Overview of the Work on \unistore}
   \begin{center}
     {\it Partial Order-Restrictions Consistency (PoR consistency)}
 
     \vspace{0.30cm}
-    TCC $<$ PoR $<$ SER \\[6pt]
-    TCC: transactional causal consistency; SER: Serializability
+    CC $<$ PoR $<$ SER \\[6pt]
+    CC: \cc; SER: \ser
 
     \vspace{1.20cm}
-    \begin{description}
+    \begin{description}[Key Challenges (II):]
       \item[\red{Key Challenges (I):}] Ensure liveness in presence of faults \\[10pt]
-      \item[\red{Key Challenges (II):}] Rigorous correctness proof
+      \item[\red{Key Challenges (II):}] Provide rigorous correctness proof
     \end{description}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{} % {\footnotesize{(\purple{ATC'2021})}}}
+\begin{frame}{Overview of the Work on \unistore}
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/unistore-atc21}
     \vspace{0.20cm}
     \red{ATC'2021 (CCF A)}
 
     \vspace{1.20cm}
-    Fully responsible for the rigorous correctness proof: \\[3pt]
+    I am fully responsible for the rigorous correctness proof: \\[3pt]
 
     \begin{itemize}
-      \item Finished a proof of 20 pages in the \textsf{arXiv} version
+      \item Finished a proof of 20 pages contained in the \textsf{arXiv} version
       \item Identified several nontrivial bugs
             in the early versions of the protocol\footnote{
               One of these bugs also exists in the well-known Granola protocol
               proposed by James Cowling and Barbara Liskov,
-              something that had gone unnoticed for 10 years.)}
+              something that had gone unnoticed for 10 years.}
     \end{itemize}
   \end{center}
 \end{frame}
@@ -58,14 +58,19 @@
 \begin{frame}{What is \unistore?}
   \begin{center}
     \unistore{} is a \red{fast}, \red{scalable}, and \red{fault-tolerant} \\[8pt]
-    \blue{transactional} distributed key-value store \\[8pt]
-    that supports a \red{combination of weak and strong consistency}.
+    \cyan{transactional} distributed key-value store \\[8pt]
+    that supports a \blue{combination of weak and strong consistency}.
 
     \pause
     \vspace{0.80cm}
     Weak consistency: \cc \\[6pt]
-    Strong consistency: \sr
+    Strong consistency: \ser
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\cc{} and \ser}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -205,9 +210,9 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Design Challenge of \unistore}
+\begin{frame}{Design Challenges of \unistore}
   \begin{center}
-    {To satisfy \red{liveness (\ev)} despite failures}
+    {How to satisfy \red{liveness (\ev)} despite failures?}
     \fig{width = 0.50\textwidth}{figs/design-challenges}
 
     \vspace{0.50cm}

@@ -1,7 +1,7 @@
 % overview.tex
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Background}
 	\begin{center}
 		Centralized Databases \emph{vs.} Distributed Databases
 
@@ -18,7 +18,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Data Consistency Problem}
 	\begin{center}
 		``Data Partition + Data Replication''
 		\fig{width = 0.60\textwidth}{figs/partition-replication}
@@ -28,7 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Data Consistency Problem}
 	\begin{center}
 		(Strong) \underline{\red{C}}onsistency, \underline{\red{A}}vailability,
 		\underline{\red{L}}atency、\underline{\red{P}}atition tolerance
@@ -51,7 +51,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Consistency Models}
 	\begin{center}
 		Use \blue{consistency models} to capture these tradeoffs
 	\end{center}
@@ -66,9 +66,9 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{My Researches}
 	\begin{center}
-		The theory of data consistency around consistency models:
+		Researches on data consistency around consistency models:
 	\end{center}
 
 	\begin{columns}
@@ -93,12 +93,12 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{My Researches}
 	\begin{center}
-		Research I ($\ge 2012$): Read/Write Register (读写寄存器) \\[6pt]
+		Research I ($\ge 2012$): Read/Write Register\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} \\[6pt]
 
 		\fig{width = 0.60\textwidth}{figs/dsss}
-		分布式 NoSQL Key-Value 数据库 (TODO: 重新画图)
+		Distributed NoSQL Key-Value Stores (TODO: 重新画图)
 
 		TODO: +research outcomes
 	\end{center}
@@ -106,16 +106,15 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{My Researches}
 	\begin{center}
-		Research II ($\ge 2017$): Replicated Data Types (复制数据类型) \\[6pt]
+		Research II ($\ge 2017$): Replicated Data Types\footnote{复制数据类型，是经典数据类型的分布式版本，如列表，集合，队列等。} \\[6pt]
 
 		\begin{columns}[c]
 			\column{0.50\textwidth}
-			\fig{width = 0.80\textwidth}{figs/coeditor}
+			\fig{width = 0.60\textwidth}{figs/rdt-dbs}
 			\column{0.50\textwidth}
-			% \fig{width = 0.80\textwidth}{figs/rdt-dbs}
-			TODO: Jupiter/Redis/Riak
+			\fig{width = 0.65\textwidth}{figs/coeditor}
 		\end{columns}
 
 		TODO: +research outcomes
@@ -124,9 +123,10 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{My Researches}
 	\begin{center}
-		Research III ($\ge 2020$): Distributed Transactions (分布式事务)
+		Research III ($\ge 2020$): Distributed Transactions\footnote{
+			分布式事务。每个事务由一组操作构成，这些操作要么全成功，要么全不成功。}
 
 		TODO: +research outcomes
 		TODO: +logos
