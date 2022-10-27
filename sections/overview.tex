@@ -6,13 +6,6 @@
 		Centralized Databases \emph{vs.} Distributed Databases
 
 		\fig{width = 0.65\textwidth}{figs/Centralized-vs-Decentralized}
-
-		% \begin{columns}[c]
-		% 	\column{0.50\textwidth}
-		% 	% \fig{width = 0.75\textwidth}{figs/centralized}
-		% 	\column{0.50\textwidth}
-		% 	\fig{width = 0.75\textwidth}{figs/sina-weibo-world-map}
-		% \end{columns}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -37,14 +30,16 @@
 		\column{0.60\textwidth}
 		\begin{center}
 			\fig{width = 0.50\textwidth}{figs/cap-theorem.png}
-			{CAP Theorem}%~\ncite{}
+			CAP Theorem \\[2pt]
+			\citepf{Brewer@PODC2000}
 		\end{center}
 		\column{0.40\textwidth}
 		\begin{center}
 			\fig{width = 0.95\textwidth}{figs/pacelc-tradeoff}
 
 			\vspace{0.50cm}
-			{PACELC Tradeoff}
+			PACELC Tradeoff \\[2pt]
+			\citepf{Abadi@Computer2012}
 		\end{center}
 	\end{columns}
 \end{frame}
@@ -58,9 +53,15 @@
 
 	\begin{columns}[c]
 		\column{0.50\textwidth}
-		\fig{width = 0.90\textwidth}{figs/consistency-model-tree}
+		\begin{center}
+			\fig{width = 0.90\textwidth}{figs/consistency-model-tree}
+			\citepf{Bailis@VLDB2012}
+		\end{center}
 		\column{0.50\textwidth}
-		\fig{width = 1.00\textwidth}{figs/consistency-models-csur2016}
+		\begin{center}
+			\fig{width = 1.00\textwidth}{figs/consistency-models-csur2016}
+			\citepf{Viotti@CSUR2016}
+		\end{center}
 	\end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -93,43 +94,71 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{My Researches}
+\begin{frame}{My Researches (I)}
 	\begin{center}
-		Research I ($\ge 2012$): Read/Write Register\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} \\[6pt]
+		Read/Write Register\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2012$) \\[6pt]
 
-		\fig{width = 0.60\textwidth}{figs/dsss}
-		Distributed NoSQL Key-Value Stores (TODO: 重新画图)
-
-		TODO: +research outcomes
+		\fig{width = 0.60\textwidth}{figs/nosql-kv}
+		Distributed Non-transactional Key-Value Stores
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches}
+	\ncite{Wei:TPDS2016}
+
+	\vspace{0.30cm}
+	\ncite{Wei:TC2017}
+
+	\vspace{0.30cm}
+	\ncite{Wei:PODC2020-Huang}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{My Researches (II)}
 	\begin{center}
-		Research II ($\ge 2017$): Replicated Data Types\footnote{复制数据类型，是经典数据类型的分布式版本，如列表，集合，队列等。} \\[6pt]
+		Replicated Data Types\footnote{复制数据类型，是经典数据类型的分布式版本，如列表，集合，队列等。} ($\ge 2017$) \\[6pt]
 
 		\begin{columns}[c]
 			\column{0.50\textwidth}
-			\fig{width = 0.60\textwidth}{figs/rdt-dbs}
+			\fig{width = 0.55\textwidth}{figs/rdt-dbs}
 			\column{0.50\textwidth}
 			\fig{width = 0.65\textwidth}{figs/coeditor}
 		\end{columns}
-
-		TODO: +research outcomes
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{My Researches}
-	\begin{center}
-		Research III ($\ge 2020$): Distributed Transactions\footnote{
-			分布式事务。每个事务由一组操作构成，这些操作要么全成功，要么全不成功。}
+\begin{frame}{My Researches (II)}
+	\ncite{Wei:PODC-BA2018}
 
-		TODO: +research outcomes
-		TODO: +logos
+	\vspace{0.30cm}
+	\ncite{Wei:OPODIS2018}
+
+	\vspace{0.30cm}
+	\ncite{Wei:SRDS2020-Jiang}
+
+	\vspace{0.30cm}
+	\ncite{Wei:JOS2020-Ji}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{My Researches (III)}
+	\begin{center}
+		Distributed Transactions\footnote{
+			分布式事务。每个事务由一组操作构成，这些操作要么全成功，要么全不成功。} ($\ge 2020$)
+
+		\fig{width = 0.50\textwidth}{figs/transactional-dbs}
 	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{My Researches (III)}
+	\ncite{Wei:ATC2021}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

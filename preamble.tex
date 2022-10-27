@@ -44,35 +44,35 @@
 \renewcommand\algorithmicdo{}
 
 \algblockdefx[upon]{When}{EndWhen}%
-  [3][Unknown]{\textbf{when for every} #3 \textbf{received a quorum of} #1(#2)}%
-  {\textbf{end}}
+[3][Unknown]{\textbf{when for every} #3 \textbf{received a quorum of} #1(#2)}%
+{\textbf{end}}
 
 \algblockdefx[upon]{WhenReceive}{EndWhenReceive}%
-  [1][Unknown]{\textbf{when received} #1}%
-  {\textbf{end}}
+[1][Unknown]{\textbf{when received} #1}%
+{\textbf{end}}
 
 \algblockdefx[upon]{Upon}{EndUpon}%
-  [1][Unknown]{\textbf{upon} #1}%
-  {\textbf{end upon}}
+[1][Unknown]{\textbf{upon} #1}%
+{\textbf{end upon}}
 
 % Remove the end blank line when using noend in conjunction with custom blocks
 % See https://tex.stackexchange.com/a/172065
 \makeatletter
 \ifthenelse{\equal{\ALG@noend}{t}}%
-  {\algtext*{EndWhen}}
-  {}%
+{\algtext*{EndWhen}}
+{}%
 \makeatother
 
 \makeatletter
 \ifthenelse{\equal{\ALG@noend}{t}}%
-  {\algtext*{EndWhenReceive}}
-  {}%
+{\algtext*{EndWhenReceive}}
+{}%
 \makeatother
 
 \makeatletter
 \ifthenelse{\equal{\ALG@noend}{t}}%
-  {\algtext*{EndUpon}}
-  {}%
+{\algtext*{EndUpon}}
+{}%
 \makeatother
 %%%%%%%%%%%%%%% Algorithms %%%%%%%%%%%%%%%
 
@@ -99,19 +99,19 @@
 %%%%%%%%%%%%%%% Figures %%%%%%%%%%%%%%%
 % for fig without caption: #1: width/size; #2: fig file
 \newcommand{\fig}[2]{
-  \begin{figure}[htp]
-    \centering
-    \includegraphics[#1]{#2}
-  \end{figure}
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[#1]{#2}
+	\end{figure}
 }
 
 % for fig with caption: #1: width/size; #2: fig file; #3: fig caption
 \newcommand{\figcap}[3]{
-  \begin{figure}[htp]
-    \centering
-    \includegraphics[#1]{#2}
-    \caption{#3}
-  \end{figure}
+	\begin{figure}[htp]
+		\centering
+		\includegraphics[#1]{#2}
+		\caption{#3}
+	\end{figure}
 }
 
 %%%%% For Chinese %%%%%
@@ -127,12 +127,12 @@
 
 %%%%%%%%%%%%%%% Citation %%%%%%%%%%%%%%%
 % try "backend = bibtex", "backend = biber"
-\usepackage[natbib = true, backend = biber, style = authoryear, maxbibnames = 99]{biblatex}
+\usepackage[natbib = true, backend = biber, style = verbose, maxbibnames = 99, maxcitenames=99]{biblatex}
 \setbeamertemplate{bibliography item}[article]
 \renewcommand*{\bibfont}{\footnotesize}
 \addbibresource{202211-research-report.bib}
 
-\newcommand{\ncite}[1]{\violet{\footnotesize [\cite{#1}]}}
+\newcommand{\ncite}[1]{\violet{\footnotesize \cite{#1}}}
 %%%%%%%%%%%%%%% Citation %%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%% Colors %%%%%%%%%%%%%%%
@@ -156,12 +156,12 @@
 
 %%%%%%%%%%%%%%% thankyou %%%%%%%%%%%%%%%
 \newcommand{\thankyou}{
-  \begin{frame}[noframenumbering]
-    \begin{center}
-      \fig{width = 0.618\textwidth}{figs/thankyou}
-      \vspace{0.30cm}
-      Hengfeng Wei (hfwei@nju.edu.cn)
-    \end{center}
-  \end{frame}
+	\begin{frame}[noframenumbering]
+		\begin{center}
+			\fig{width = 0.618\textwidth}{figs/thankyou}
+			\vspace{0.30cm}
+			Hengfeng Wei (hfwei@nju.edu.cn)
+		\end{center}
+	\end{frame}
 }
 %%%%%%%%%%%%%%% thankyou %%%%%%%%%%%%%%%
