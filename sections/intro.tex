@@ -9,7 +9,7 @@
 
     \vspace{1.00cm}
     \unistore{} is the first \red{fault-tolerant} and scalable \cyan{transactional} data store
-    that \blue{combines causal and strong consistency}.
+    that \blue{combines weak and strong consistency}.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -23,13 +23,17 @@
     CC $<$ PoR $<$ SER \\[6pt]
     CC: \cc; SER: \ser
 
-    \vspace{1.20cm}
+    \pause
+    \vspace{1.00cm}
     \begin{columns}
       \column{0.05\textwidth}
       \column{0.90\textwidth}
-      \begin{description}[Key Challenges (II):]
-        \item[\red{Key Challenges (I):}] Ensure liveness in presence of faults \\[10pt]
-        \item[\red{Key Challenges (II):}] Provide rigorous correctness proof
+      \begin{description}[Challenges (II):]
+        \setlength{\itemsep}{8pt}
+        \item[Challenges (I):] To ensure \red{liveness} of the system in the presence of data
+          center failures
+        \item[Challenges (II):] To provide a rigorous correctness \red{proof} of the protocol
+          which is rather complicated
       \end{description}
       \column{0.05\textwidth}
     \end{columns}
@@ -44,16 +48,15 @@
     \vspace{0.20cm}
     \red{ATC'2021 (CCF A)}
 
-    \vspace{1.00cm}
-    \noindent I am fully responsible for the rigorous correctness proof: \\[3pt]
+    \vspace{0.80cm}
+    \noindent I am fully responsible for developing a rigorous correctness proof: \\[3pt]
 
     \begin{itemize}
       \item Finished a proof of 20 pages contained in the \textsf{arXiv} version
-      \item Identified several nontrivial bugs
-            in the early versions of the protocol\footnote{
-              One of these bugs also exists in the well-known Granola protocol
-              proposed by James Cowling and Barbara Liskov,
-              something that had gone unnoticed for 10 years.}
+      \item Identified several nontrivial bugs in the early versions of the
+            protocol\footnote{ One of these bugs also exists in the well-known Granola
+              protocol proposed by James Cowling and Barbara Liskov, something that had gone
+              unnoticed for 10 years.}, and proposed solutions to fix them
     \end{itemize}
   \end{center}
 \end{frame}
@@ -65,11 +68,6 @@
     \unistore{} is a \red{fast}, \red{scalable}, and \red{fault-tolerant} \\[8pt]
     \cyan{transactional} distributed key-value store \\[8pt]
     that supports a \blue{combination of weak and strong consistency}.
-
-    \pause
-    \vspace{0.80cm}
-    Weak consistency: \cc \\[6pt]
-    Strong consistency: \ser
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -77,27 +75,29 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Why \textsc{Uni-}?}
   \begin{center}
-    Weak consistency: low latency, high availability, \\[3pt]
+    \causalcolor{Weak Consistency:} low latency, high availability, \\[3pt]
     but unable to preserve critical application invariants
 
     \fig{width = 0.40\textwidth}{figs/best-of-both-worlds}
 
-    Strong consistency: easy to preserve critical application invariants, \\[3pt]
-    but require global synchronization
+    \strongcolor{Strong Consistency:} easy to preserve critical application invariants, \\[3pt]
+    but require global synchronization among data centers
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{The \textsc{Uni-} Approach}
-  \begin{itemize}
+  \begin{itemize}[<+->]
     \setlength{\itemsep}{8pt}
-    \item Allow \red{multiple consistency levels} to coexist
-    \item Take the \blue{weak consistency level} as the default and the baseline
-    \item Allow programmers to \red{choose} the operations that should be executed under \blue{strong consistency}
-      \begin{itemize}
-        \item e.g., if the execution of an operation may violate the application violations
-      \end{itemize}
+    \item Multiple consistency levels coexist in a store
+    \item Take \causalcolor{weak consistency} as the default and the baseline
+    \item Programmers can choose the transactions that should be executed under
+          \strongcolor{strong consistency} \\[3pt]
+          \begin{itemize}
+            \item e.g., if the execution of a set of transactions may violate the application
+                  violations
+          \end{itemize}
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -109,37 +109,39 @@
     \citepf{Li@OSDI'2012, Li@ACT'2018}
   \end{center}
 
+  \pause
   \begin{itemize}
     \setlength{\itemsep}{8pt}
-    \item PoR allows programmers to classify operations as either \blue{causal} or \red{strong}.
-    \pause
-    \item \blue{Causal} operations satisfy \cc:
-      \begin{itemize}
-        \item Clients see updates in an order that respects the \cyan{potential causality} between them. \\[3pt]
-        \item \cyan{Causally independent} operations can be executed concurrently.
-      \end{itemize}
-    \pause
-    \item Programmers use \red{strong} operations to enforce orders
-      between some causally independent operations.
+    \item PoR allows programmers to classify transactions as either \causalcolor{causal}
+          or \strongcolor{strong}. \pause
+    \item \causalcolor{Causal} transactions satisfy \cc:
+          \begin{itemize}
+            \item Clients see updates in an order that respects the \cyan{potential causality}
+                  between them. \\[3pt]
+            \item \cyan{Causally independent} transactions can be executed concurrently.
+          \end{itemize}
+          \pause
+    \item Programmers use \strongcolor{strong} transactions to enforce orders between
+          some causally independent transactions.
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{\ser{} and \cc}
+\begin{frame}{\cc}
   \begin{center}
     TODO: +fig
     Clients see updates in an order that respects the \red{potential causality} between them. \\[3pt]
-    Causally independent operations can be executed concurrently.
+    Causally independent transactions can be executed concurrently.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{\ser{} and \cc}
+\begin{frame}{\ser}
   \begin{center}
     \fig{width = 0.60\textwidth}{figs/serializability-jepsen}
-    All the operations seem to be executed in some \red{sequential} order.
+    All transactions seem to be executed in some \red{sequential} order.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -153,11 +155,11 @@
 
     \pause
     \vspace{0.50cm}
-    \blue{\textsc{deposit}} operations can be executed under \blue{\cc}.
+    \causalcolor{\textsc{deposit}} operations can be executed under \causalcolor{\cc}.
 
     \pause
     \vspace{0.50cm}
-    {\blue{\textsc{deposit($50$)}}}
+    {\causalcolor{\textsc{deposit($50$)}}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -171,12 +173,12 @@
 
     \pause
     \vspace{0.50cm}
-    {Causal consistency also allows two causally independent \red{\textsc{withdraw}} to execute concurrently,
-    without knowing each other.}
+    {However, \cc{} also allows two causally independent \strongcolor{\textsc{withdraw}} to execute concurrently,
+      without knowing each other.}
 
     \pause
     \vspace{0.50cm}
-    {\blue{\textsc{withdraw($60$)}}}
+    {\causalcolor{\textsc{withdraw($60$)}}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -185,16 +187,17 @@
 \begin{frame}{The PoR Approach}
   % \begin{definition}[Session Order]
   %   A transaction $t_{1}$ precedes a transaction $t_{2}$
-  %   in the \red{session order}, denoted \red{$t_{1} \rel{\so} t_{2}$},
+  %   in the \red{session order}, denoted \strongcolor{$t_{1} \rel{\so} t_{2}$},
   %   if they are executed by the same client and $t_{1}$ is executed before $t_{2}$.
   % \end{definition}
 
   \begin{itemize}
     \setlength{\itemsep}{8pt}
-    \item The programmer provides a symmetric \red{conflict relation}
-      $\conflict$ on operations.
-    \item Any operation involved in the conflict relation is marked \blue{strong}.
-    \item PoR ensures that conflicting operations are executed serially.
+    \item The programmer provides a symmetric \strongcolor{conflict relation} $\conflict$
+          on transactions.
+    \item Any transaction involved in the conflict relation is marked
+          \strongcolor{strong}.
+    \item PoR ensures that conflicting transactions are executed serially.
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -207,7 +210,7 @@
     \red{Invariant: $\textsf{balance} \ge 0$}
 
     \vspace{0.50cm}
-    Only \red{\textsc{withdraw}} are marked \red{strong}.
+    Only \strongcolor{\textsc{withdraw}} are marked \strongcolor{strong}.
 
     Declaring that strong transactions \\[3pt]
     including \textsc{withdraw} on the same account conflict.
@@ -216,7 +219,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Consistency Model of \unistore (Safety)}
+\begin{frame}{Consistency Model of \unistore{} (Safety)}
   \begin{center}
     \unistore{} implements a \blue{transactional} variant of \\
     the \por{} consistency
@@ -238,30 +241,30 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Consistency Model of \unistore (Liveness)}
+\begin{frame}{Consistency Model of \unistore{} (Liveness)}
   \ev
 
   \vspace{0.50cm}
-  A transaction $t \in T$ that is either \purple{strong}
-  or \teal{originates at a correct data center}
-  eventually become \red{visible} at all \violet{correct} data centers.
-  \begin{itemize}
-    \item from some point on, $t$ precedes all transactions issued
-      at correct data centers.
-  \end{itemize}
+  A transaction that is either \strongcolor{strong}
+  or \causalcolor{causal that originates at a correct data center}
+  eventually becomes \red{visible} at all \violet{correct} data centers.
+  % \begin{itemize}
+  %   \item from some point on, $t$ precedes all transactions issued at correct data
+  %         centers.
+  % \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Design Challenges of \unistore}
   \begin{center}
-    {How to satisfy \red{liveness (\ev)} despite failures?}
+    {How to ensure \red{liveness} despite data center failures?}
     \fig{width = 0.50\textwidth}{figs/design-challenges}
 
     \vspace{0.50cm}
     A transaction $t \in T$ that is either \purple{strong}
     or \teal{originates at a correct data center}
-    eventually become \red{visible} at all \violet{correct} data centers.
+    eventually become \red{visible} at all correct data centers.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -269,15 +272,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Liveness of Causal Transactions}
   \begin{center}
-    {Data center $d_{1}$ crashes \\[3pt]
-      before $\causalcolor{t_{1}}$ is replicated to correct data center $d_{3}$.}
+    $d_{1}$ crashes before $\causalcolor{t_{1}}$ is replicated to $d_{3}$.
 
     \vspace{0.20cm}
-    \fig{width = 0.70\textwidth}{figs/liveness-causal}
+    \fig{width = 0.50\textwidth}{figs/liveness-causal.png}
 
     \pause
-    Transaction $t_{2}$ (at correct data center $d_{2}$) \\[3pt]
-    may never become visible at correct data center $d_{3}$.
+    Transaction \causalcolor{$t_{2}$} may never become visible at $d_{3}$.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -285,15 +286,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Liveness of Causal Transactions}
   \begin{center}
-    Data center $d_{1}$ crashes \\[3pt]
-    before $\causalcolor{t_{1}}$ is replicated to correct data center $d_{3}$.
+    $d_{1}$ crashes before $\causalcolor{t_{1}}$ is replicated to $d_{3}$.
 
     \vspace{0.20cm}
-    \fig{width = 0.70\textwidth}{figs/liveness-causal}
+    \fig{width = 0.50\textwidth}{figs/liveness-causal.png}
 
     \pause
-    Data center $d_{2}$ need to \red{forward} causal transactions \\[3pt]
-    to other data centers.
+    $d_{2}$ need to \red{forward} causal transactions to other data centers.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -301,15 +300,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Liveness of Strong Transactions}
   \begin{center}
-    Data center $d_{1}$ crashes \\[3pt]
-    before $\causalcolor{t_{1}}$ is replicated to correct data center $d_{3}$.
+    $d_{1}$ crashes before $\causalcolor{t_{1}}$ is replicated to $d_{3}$.
 
     \vspace{0.50cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
 
     \pause
     \vspace{0.30cm}
-    Transaction $\strongcolor{t_{2}}$ will never be visible at $d_{3}$. \\[3pt]
+    $\strongcolor{t_{2}}$ will never be visible at $d_{3}$. \\[3pt]
+    \pause
     No transaction $\strongcolor{t_{3}}$ conflicting with $\strongcolor{t_{2}}$ can commit.
   \end{center}
 \end{frame}
@@ -318,65 +317,69 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Liveness of Strong Transactions}
   \begin{center}
-    \unistore{} ensures that before a strong transaction commits, \\[3pt]
-    all its causal dependencies are \red{uniform}, \\[3pt]
-    i.e., will eventually become visible at all correct data centers.
+    A \strongcolor{strong} transaction should wait for all its
+    \causalcolor{causal dependencies} to become \red{uniform} before committing. \\[3pt]
+    {\footnotesize (eventually become visible at all correct data centers)}
 
     \vspace{0.30cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
 
     \pause
-    Transaction $\causalcolor{t_{1}}$ will eventually be visible at $d_{3}$. \\[3pt]
-    Transaction $\strongcolor{t_{2}}$ will eventually be visible at $d_{3}$. \\[3pt]
-    Transaction $\strongcolor{t_{3}}$ may be committed at $d_{3}$. \\[3pt]
+    $\causalcolor{t_{1}}$ will eventually be visible at $d_{3}$. \\[3pt]
+    \pause
+    $\strongcolor{t_{2}}$ will eventually be visible at $d_{3}$. \\[3pt]
+    \pause
+    $\strongcolor{t_{3}}$ may be committed at $d_{3}$. \\[3pt]
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Performance of \unistore}
+\begin{frame}{Minimizing the Latency of Strong Transactions}
   \begin{center}
-    Causal transactions remain highly-available, i.e., committed locally. \\[6pt]
+    A \strongcolor{strong} transaction should wait for all its
+    \causalcolor{causal dependencies} to become \red{uniform} before committing.
 
     \vspace{0.30cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
 
+    \pause
     \vspace{0.20cm}
-    A strong transaction may have to \red{wait} for some of its dependencies
+    \strongcolor{$t_{2}$} waits for \red{local} \causalcolor{$t_{1}$}
     to become uniform before committing.
 
     \pause
     \vspace{0.50cm}
-    \red{However, this may cost too much.}
+    However, it may cost too much to wait for \red{remote} \causalcolor{causal dependencies}
+    to become uniform.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Performance of \unistore{}}
+\begin{frame}{Minimizing the Latency of Strong Transactions}
   \begin{center}
-    \unistore{} makes a remote causal transaction visible to clients \\[3pt]
-    only \red{after it is uniform}.
-
-    \vspace{0.30cm}
-    Causal transactions are executed on an (almost) \\[3pt]
+    Let \causalcolor{causal transactions} be executed on an (almost)
     \red{uniform snapshot} that may be slightly in the past.
 
     \vspace{0.50cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
 
     \pause
-    A strong transaction only needs to wait for causal transactions \\[3pt]
-    originating at the \red{local} data center to become uniform.
+    \vspace{0.30cm}
+    Make a \red{remote} \causalcolor{causal transaction} visible
+    only \red{after it is uniform}.
+
+    \pause
+    \vspace{0.30cm}
+    A \strongcolor{strong} transaction does \emph{not}
+    need to wait for \red{remote} \causalcolor{causal dependencies}
+    to become uniform before committing.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Scalability of \unistore}
-  \begin{center}
-    \unistore{} scales horizontally, \\[3pt]
-    i.e., with the number of machines ({partitions}) in each data center.
-  \end{center}
+\begin{frame}{Related Work}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

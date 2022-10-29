@@ -1,17 +1,22 @@
 % cc.tex
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
-  \begin{center}
-    {\Large Fault-tolerant Causal Consistency Protocol}
-  \end{center}
+\begin{frame}{Fault-tolerant Causal Consistency Protocol}
+  \unistore{} relies on various vector clocks $\in [\D \to \N]$ for \\[6pt]
+
+  \begin{itemize}
+    \setlength{\itemsep}{8pt}
+    \item Tracking causality ($\commitvc$)
+    \item Representing causally consistent snapshots ($\snapshotVC$)
+    \item \red{Tracking what is replicated where}
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Requirement: Tracking Uniformity}
+\begin{frame}{Tracking What is Replicated Where}
   \begin{center}
-    \unistore{} makes a remote causal transaction visible to clients \\[3pt]
+    Make a \red{remote} \causalcolor{causal transaction} visible
     only \red{after it is uniform}.
 
     \pause
@@ -31,144 +36,25 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Metadata for Causal Transactions}
-  \begin{center}
-    Each transaction is tagged with a commit vector $\commitvc$.
-    \[
-      \commitvc \in [\D \to \N]
-    \]
+\begin{frame}{Tracking What is Replicated Where}
+  Each replica $p^{m}_{d}$ maintains three vectors: \\[5pt]
 
-    \vspace{0.20cm}
-    For a transaction originating at data center $d$, \\[3pt]
-    we call $\commitvc[d]$ its \red{local timestamp}.
-
-    \pause
-    \vspace{0.60cm}
-    Commit vectors are sent to sibling replicas \\[3pt]
-    via \blue{replication and forwarding}.
-  \end{center}
+  \begin{description}[<+->]
+    \setlength{\itemsep}{10pt}
+    \item[$\knownVC$:] track the set of transactions replicated at $p^{m}_{d}$
+    \item[$\stableVC$:] track the set of transactions replicated at the local data center $d$
+    \item[$\uniformVC$:] track the set of transactions replicated at $f + 1$ data centers
+  \end{description}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Metadata for Causal Transactions}
-  \begin{center}
-    Each replica $p^{m}_{d}$ maintains the following three vectors:
-    \begin{align*}
-      \knownVC &\in [\D \to \N] \\[10pt]
-      \stableVC &\in [\D \to \N] \\[10pt]
-      \uniformVC &\in [\D \to \N]
-    \end{align*}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Metadata for Causal Transactions}
-  \begin{center}
-    \[
-      \knownVC \in [\D \to \N]
-    \]
-
-    \begin{property}[Property of $\knownVC$]
-      \begin{center}
-        For each data center $i$, \\[3pt]
-        the \red{replica $p^{m}_{d}$} stores the updates to partition $m$ \\[3pt]
-        by transactions originating at $i$
-        with local timestamps $\le \knownVC[i]$.
-      \end{center}
-    \end{property}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Metadata for Causal Transactions}
-  \begin{center}
-    \[
-      \stableVC \in [\D \to \N]
-    \]
-
-    \begin{property}[Property of $\stableVC$]
-      \begin{center}
-        For each data center $i$, \\[3pt]
-        the \red{data center $d$} stores the updates \\[3pt]
-        by transactions originating at $i$ with local timestamps $\le \stableVC[i]$.
-      \end{center}
-    \end{property}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Metadata for Causal Transactions}
-  \begin{center}
-    \[
-      \uniformVC \in [\D \to \N]
-    \]
-
-    \begin{property}[Property of $\uniformVC$]
-      \begin{center}
-        All update transactions originating at $i$ \\[3pt]
-        with local timestamps $\le \uniformVC[i]$ \\[3pt]
-        are replicated at \red{$f + 1$ data centers} including $d$.
-      \end{center}
-    \end{property}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Metadata for Causal Transactions}
-  \[
-    \uniformVC \in [\D \to \N]
-  \]
-
-  \begin{lemma}
-    \begin{center}
-      All update transactions \\[3pt]
-      with \red{commit vectors $\le \uniformVC$} are uniform.
-    \end{center}
-  \end{lemma}
-
-  \pause
-  \vspace{0.30cm}
-  \begin{center}
-    \unistore{} makes a remote causal transaction visible to clients \\[3pt]
-    only \red{after it is uniform}.
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Causal Consistency Protocol: Start}
-  \begin{center}
-    Causal transactions are executed on an (almost) \red{uniform snapshot}.
-
-    \vspace{0.20cm}
-
-    $\snapVC[tid][d]$ ensures ``{read-your-writes}''.
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Causal Consistency Protocol: Read}
-  \begin{center}
-    Causal transactions are executed on an (almost) \red{uniform snapshot}.
-
-    \violet{\wait: ensure that it is as up-to-date as required by the snapshot}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Causal Consistency Protocol: Commit}
-  \begin{center}
-    \green{Read-only transactions returns immediately.}
-
-    \violet{2PC protocol for update transactions}
-  \end{center}
+\begin{frame}{Fault-tolerant Causal Consistency Protocol}
+  \begin{itemize}
+    \setlength{\itemsep}{8pt}
+    \item Causal transactions are executed on a uniform snapshot.
+    \item Read-only transactions returns immediately.
+    \item Update transactions commit using a variant of 2PC protocol.
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

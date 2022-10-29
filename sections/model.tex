@@ -1,7 +1,7 @@
 % model.tex
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{System Model}
+\begin{frame}{System Model and Notations}
   \begin{center}
     $\D = \set{1, \dots, D}:$ the set of data centers \\[3pt]
 
@@ -15,29 +15,29 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{System Model}
-  \begin{center}
-    $D = 2f + 1$ and $\le f$ data centers may fail
+% \begin{frame}{System Model}
+%   \begin{center}
+%     $D = 2f + 1$ and $\le f$ data centers may fail
 
-    \fig{width = 0.60\textwidth}{figs/partition-replication}
+%     \fig{width = 0.60\textwidth}{figs/partition-replication}
 
-    Any two replicas are connected by a reliable FIFO channel. \\[3pt]
-    Messages between correct data centers will eventually be delivered.
-  \end{center}
-\end{frame}
+%     Any two replicas are connected by a reliable FIFO channel. \\[3pt]
+%     Messages between correct data centers will eventually be delivered.
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{System Model}
-  \begin{center}
-    Replicas have loosely synchronized physical clocks.
+% \begin{frame}{System Model}
+%   \begin{center}
+%     Replicas have loosely synchronized physical clocks.
 
-    \vspace{0.20cm}
-    \fig{width = 0.50\textwidth}{figs/clocks}
+%     \vspace{0.20cm}
+%     \fig{width = 0.50\textwidth}{figs/clocks}
 
-    \vspace{0.20cm}
-    The correctness of \unistore{} does \red{\it not} \\[3pt]
-    depend on the precision of clock synchronization.
-  \end{center}
-\end{frame}
+%     \vspace{0.20cm}
+%     The correctness of \unistore{} does \red{\it not} \\[3pt]
+%     depend on the precision of clock synchronization.
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%

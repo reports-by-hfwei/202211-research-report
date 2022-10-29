@@ -1,9 +1,8 @@
 % strong.tex
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{Adding Strong Transactions}
   \begin{center}
-    {\Large Adding Strong Transactions}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -12,11 +11,11 @@
 \begin{frame}{Requirement: \conflictaxiom}
   \begin{center}
     \[
-       \forall t_{1}, t_{2} \in \strongtxs.\;
-       t_{1} \conflict t_{2} \implies t_{1} \prec t_{2} \lor t_{2} \prec t_{1}.
+      \forall t_{1}, t_{2} \in \strongtxs.\;
+      t_{1} \conflict t_{2} \implies t_{1} \prec t_{2} \lor t_{2} \prec t_{1}.
     \]
 
-    Each strong transaction is assigned a scalar \red{strong timestamp}.
+    Each strong transaction is assigned a scalar \strongcolor{strong timestamp}.
 
     \[
       \commitVC \in [\D \cup \set{\strongentry} \to \N]
@@ -104,9 +103,9 @@
     \pause
     \begin{columns}
       \column{0.45\textwidth}
-        \fig{width = 1.00\textwidth}{figs/tcs}
+      \fig{width = 1.00\textwidth}{figs/tcs}
       \column{0.55\textwidth}
-        \fig{width = 1.00\textwidth}{figs/multicast}
+      \fig{width = 1.00\textwidth}{figs/multicast}
     \end{columns}
 
     \vspace{0.50cm}

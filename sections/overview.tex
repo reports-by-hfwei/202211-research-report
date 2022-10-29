@@ -13,9 +13,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Data Consistency Problem}
 	\begin{center}
-		``Data Partition + Data Replication''
+		The ``Data Partition + Data Replication'' Architecture
 		\fig{width = 0.60\textwidth}{figs/partition-replication}
-		\red{Data Consistency Problem}
+
+		\pause
+		\red{(Distributed) Data Consistency Problem}
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -46,9 +48,20 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Data Consistency Problem}
+	\begin{center}
+		\fig{width = 0.40\textwidth}{figs/one-size-fit-all-text}
+
+		\vspace{0.30cm}
+		没有一劳永逸的解决方案
+	\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Consistency Models}
 	\begin{center}
-		Use \blue{consistency models} to capture these tradeoffs
+		Use various \blue{consistency models} to capture these tradeoffs
 	\end{center}
 
 	\begin{columns}[c]
@@ -63,30 +76,32 @@
 			\citepf{Viotti@CSUR2016}
 		\end{center}
 	\end{columns}
+
+	\fig{width = 0.10\textwidth}{figs/strong-weak}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches}
 	\begin{center}
-		Researches on data consistency around consistency models:
+		On the data consistency theory around consistency models:
 	\end{center}
 
 	\begin{columns}
-		\column{0.10\textwidth}
-		\column{0.80\textwidth}
+		\column{0.05\textwidth}
+		\column{0.90\textwidth}
 		\begin{description}[Computability]
 			\setlength{\itemsep}{8pt}
 			\item[Computability:] What is possible or impossible?
 			\item[Protocol:] How to design fast, scalable, and fault-tolerant protocols?
-			\item[Testing:] What is the complexity? \\[3pt] How to design efficient testing algorihthms?
+			\item[Testing:] What is the complexity? \\[3pt] How to design efficient testing algorithms?
 				% \item[协议验证:] TODO:
 		\end{description}
-		\column{0.10\textwidth}
+		\column{0.05\textwidth}
 	\end{columns}
 
 	\pause
-	\vspace{0.60cm}
+	\vspace{0.50cm}
 	\begin{center}
 		Classic problems with the ever-changing requirements
 	\end{center}
@@ -96,7 +111,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches (I)}
 	\begin{center}
-		Read/Write Register\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2012$) \\[6pt]
+		Read/Write Register\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2014$) \\[6pt]
 
 		\fig{width = 0.60\textwidth}{figs/nosql-kv}
 		Distributed Non-transactional Key-Value Stores
@@ -105,7 +120,7 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{My Researches}
+\begin{frame}{My Researches (I)}
 	\ncite{Wei:TPDS2016}
 
 	\vspace{0.30cm}
@@ -150,7 +165,7 @@
 \begin{frame}{My Researches (III)}
 	\begin{center}
 		Distributed Transactions\footnote{
-			分布式事务。每个事务由一组操作构成，这些操作要么全成功，要么全不成功。} ($\ge 2020$)
+			分布式事务。每个事务由一组操作构成，这些操作要么都成功，要么都失败。} ($\ge 2020$)
 
 		\fig{width = 0.50\textwidth}{figs/transactional-dbs}
 	\end{center}
