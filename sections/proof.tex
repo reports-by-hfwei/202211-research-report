@@ -3,6 +3,23 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Correctness Proof}
   \begin{center}
+    We use the $(\vis, \ar)$ formal specification framework.
+
+    \vspace{0.60cm}
+    \fig{width = 0.80\textwidth}{figs/cerone-concur2015}
   \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Proof of Correctness}
+  The key is to \red{construct} the appropriate ``visibility'' ($\vis$) relation
+  and the ``arbitration'' ($\ar$) relation between transactions such that \\[10pt]
+
+  \begin{itemize}
+    \setlength{\itemsep}{8pt}
+    \item The desired properties of various vector clocks hold.
+    \item The \red{liveness} property holds.
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

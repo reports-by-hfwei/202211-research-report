@@ -219,44 +219,38 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Consistency Model of \unistore{} (Safety)}
+\begin{frame}{Related Work}
   \begin{center}
-    \unistore{} implements a \blue{transactional} variant of \\
-    the \por{} consistency
-
-    \pause
-    \[
-      \txs \triangleq \causaltxs \uplus \strongtxs
-    \]
-
-    \pause
-    \vspace{0.60cm}
-    \begin{enumerate}[(I)]
-      \centering
-      \item transactional causal consistency by default
-      \item to specify conflicting transactions under strong consistency
-    \end{enumerate}
+    \red{\large non-transactional}
   \end{center}
+
+  \ncite{Attiya:SIAMJComput1998}
+
+  \vspace{0.30cm}
+  \ncite{NonSeq:SIAMJComput1998}
+
+  \fig{width = 0.30\textwidth}{figs/multiple-consistency-levels}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Consistency Model of \unistore{} (Liveness)}
-  \ev
+\begin{frame}{Related Work}
+  \begin{center}
+    \red{\large not fault-tolerant}
+  \end{center}
 
-  \vspace{0.50cm}
-  A transaction that is either \strongcolor{strong}
-  or \causalcolor{causal that originates at a correct data center}
-  eventually becomes \red{visible} at all \violet{correct} data centers.
-  % \begin{itemize}
-  %   \item from some point on, $t$ precedes all transactions issued at correct data
-  %         centers.
-  % \end{itemize}
+  \ncite{BackEC:EuroSys2015}
+
+  \vspace{0.30cm}
+  \ncite{Li:OSDI2012}
+
+  \vspace{0.30cm}
+  \ncite{Li:ATC2018}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Design Challenges of \unistore}
+\begin{frame}{Liveness of \unistore}
   \begin{center}
     {How to ensure \red{liveness} despite data center failures?}
     \fig{width = 0.50\textwidth}{figs/design-challenges}
@@ -376,10 +370,5 @@
     need to wait for \red{remote} \causalcolor{causal dependencies}
     to become uniform before committing.
   \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Related Work}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

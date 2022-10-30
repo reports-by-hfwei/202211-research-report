@@ -128,3 +128,39 @@
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Consistency Model of \unistore{} (Safety)}
+  \begin{center}
+    \unistore{} implements a \blue{transactional} variant of \\
+    the \por{} consistency
+
+    \pause
+    \[
+      \txs \triangleq \causaltxs \uplus \strongtxs
+    \]
+
+    \pause
+    \vspace{0.60cm}
+    \begin{enumerate}[(I)]
+      \centering
+      \item transactional causal consistency by default
+      \item to specify conflicting transactions under strong consistency
+    \end{enumerate}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Consistency Model of \unistore{} (Liveness)}
+
+  \vspace{0.50cm}
+  A transaction that is either \strongcolor{strong}
+  or \causalcolor{causal that originates at a correct data center}
+  eventually becomes \red{visible} at all \violet{correct} data centers.
+  % \begin{itemize}
+  %   \item from some point on, $t$ precedes all transactions issued at correct data
+  %         centers.
+  % \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
