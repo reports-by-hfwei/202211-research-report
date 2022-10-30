@@ -76,3 +76,55 @@
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Adding Strong Transactions}
+  \begin{center}
+    \[
+      \knownVC \in [\D \cup \set{\strongentry} \to \N]
+    \]
+
+    \begin{property}[Property of {$\knownVC[\strongentry]$}]
+      \begin{center}
+        \red{Replica $p^{m}_{d}$} stores the updates to $m$ by all strong transactions \\[3pt]
+        with $\commitVC[\strongentry] \le \knownVC[\strongentry]$.
+      \end{center}
+    \end{property}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Metadata for Strong Transactions}
+  \begin{center}
+    \[
+      \stableVC \in [\D \cup \set{\strongentry} \to \N]
+    \]
+
+    \fig{width = 0.80\textwidth}{figs/knownvc-local-strong}
+
+    \begin{property}[Property of {$\stableVC[\strongentry]$}]
+      \begin{center}
+        \red{Data center $d$} stores the updates by all strong transactions \\[3pt]
+        with $\commitVC[\strongentry] \le \knownVC[\strongentry]$.
+      \end{center}
+    \end{property}
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Metadata for Strong Transactions}
+  \begin{center}
+    \[
+      \uniformVC \in [\D \to \N]
+    \]
+
+    \fig{width = 0.80\textwidth}{figs/stablevc-uniformvc-strong}
+
+    \vspace{0.30cm}
+    The commit protocol for strong transactions \\[3pt]
+    guarantees their uniformity.
+  \end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%
