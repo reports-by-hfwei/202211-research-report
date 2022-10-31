@@ -17,19 +17,19 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Overview of the Work on \unistore}
   \begin{center}
-    {\red{\underline{P}}artial \red{\underline{O}}rder-\red{\underline{R}}estrictions (PoR) Consistency}
+    % {\red{\underline{P}}artial \red{\underline{O}}rder-\red{\underline{R}}estrictions (PoR) Consistency}
 
-    \vspace{0.30cm}
-    CC $<$ PoR $<$ SER \\[6pt]
-    CC: \cc; SER: \ser
+    % \vspace{0.30cm}
+    % CC $<$ PoR $<$ SER \\[6pt]
+    % CC: \cc; SER: \ser
 
-    \pause
-    \vspace{1.00cm}
+    % \pause
+    % \vspace{1.00cm}
     \begin{columns}
       \column{0.05\textwidth}
       \column{0.90\textwidth}
       \begin{description}[Challenges (II):]
-        \setlength{\itemsep}{8pt}
+        \setlength{\itemsep}{15pt}
         \item[Challenges (I):] To ensure \red{liveness} of the system in the presence of data
           center failures \pause
         \item[Challenges (II):] To provide a rigorous correctness \red{proof} of the protocol
@@ -48,6 +48,7 @@
     \vspace{0.20cm}
     \red{ATC'2021 (CCF A)}
 
+    \pause
     \vspace{0.80cm}
     \noindent I am fully responsible for developing a rigorous correctness proof: \\[3pt]
 
@@ -76,13 +77,15 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Why \textsc{Uni-}?}
   \begin{center}
-    \causalcolor{Weak Consistency:} low latency, high availability, \\[3pt]
-    but unable to preserve critical application invariants
+    \causalcolor{Weak Consistency:}
+    \uncover<2->{low latency, high availability, \\[3pt]
+      but unable to preserve critical application invariants}
 
-    \fig{width = 0.40\textwidth}{figs/best-of-both-worlds}
+    \uncover<4->{\fig{width = 0.40\textwidth}{figs/best-of-both-worlds}}
 
-    \strongcolor{Strong Consistency:} easy to preserve critical application invariants, \\[3pt]
-    but require global synchronization among data centers
+    \strongcolor{Strong Consistency:}
+    \uncover<3->{easy to preserve critical application invariants, \\[3pt]
+      but require global synchronization among data centers}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -130,36 +133,33 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{\cc}
-  \begin{center}
-    TODO: +fig
-    Clients see updates in an order that respects the \red{potential causality} between them. \\[3pt]
-    Causally independent transactions can be executed concurrently.
-  \end{center}
+  \fig{width = 0.50\textwidth}{figs/cc-illustration}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{\ser}
-  \begin{center}
-    \fig{width = 0.60\textwidth}{figs/serializability-jepsen}
-    All transactions seem to be executed in some \red{sequential} order.
-  \end{center}
-\end{frame}
+% \begin{frame}{\ser}
+%   \begin{center}
+%     \fig{width = 0.60\textwidth}{figs/serializability-jepsen}
+%     All transactions seem to be executed in some \red{sequential} order.
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{A Banking Application}
   \begin{center}
-    \textsc{deposit \quad withdraw \quad query \quad interest}
+    % \textsc{deposit \quad withdraw \quad query \quad interest}
     \fig{width = 0.60\textwidth}{figs/alice-bob}
     \red{Invariant: $\textsf{balance} \ge 0$}
 
     \pause
     \vspace{0.50cm}
-    \causalcolor{\textsc{deposit}} operations can be executed under \causalcolor{\cc}.
+    \causalcolor{\textsc{deposit}} operations can be executed under \causalcolor{\cc}: \\[3pt]
+    locally commit first, then synchronize the updates asynchronously
 
     \pause
-    \vspace{0.50cm}
+    \vspace{0.30cm}
     {\causalcolor{\textsc{deposit($50$)}}}
   \end{center}
 \end{frame}
@@ -168,7 +168,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{A Banking Application}
   \begin{center}
-    \textsc{deposit \quad withdraw \quad query \quad interest}
+    % \textsc{deposit \quad withdraw \quad query \quad interest}
     \fig{width = 0.60\textwidth}{figs/alice-bob}
     \red{Invariant: $\textsf{balance} \ge 0$}
 
@@ -178,21 +178,15 @@
       without knowing each other.}
 
     \pause
-    \vspace{0.50cm}
-    {\causalcolor{\textsc{withdraw($60$)}}}
+    \vspace{0.30cm}
+    {\causalcolor{\textsc{withdraw($60$)}}} produces $-20 < 0$
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{The PoR Approach}
-  % \begin{definition}[Session Order]
-  %   A transaction $t_{1}$ precedes a transaction $t_{2}$
-  %   in the \red{session order}, denoted \strongcolor{$t_{1} \rel{\so} t_{2}$},
-  %   if they are executed by the same client and $t_{1}$ is executed before $t_{2}$.
-  % \end{definition}
-
-  \begin{itemize}
+  \begin{itemize}[<+->]
     \setlength{\itemsep}{8pt}
     \item The programmer provides a symmetric \strongcolor{conflict relation} $\conflict$
           on transactions.
@@ -206,15 +200,16 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{A Banking Application}
   \begin{center}
-    \textsc{deposit \quad withdraw \quad query \quad interest}
+    % \textsc{deposit \quad withdraw \quad query \quad interest}
     \fig{width = 0.60\textwidth}{figs/alice-bob}
     \red{Invariant: $\textsf{balance} \ge 0$}
 
     \vspace{0.50cm}
-    Only \strongcolor{\textsc{withdraw}} are marked \strongcolor{strong}.
+    Only \strongcolor{\textsc{withdraw}} on the same account are marked \strongcolor{strong}.
 
-    Declaring that strong transactions \\[3pt]
-    including \textsc{withdraw} on the same account conflict.
+    \pause
+    \vspace{0.30cm}
+    One of {\strongcolor{\textsc{withdraw($60$)}}} aborts.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -270,7 +265,7 @@
     $d_{1}$ crashes before $\causalcolor{t_{1}}$ is replicated to $d_{3}$.
 
     \vspace{0.20cm}
-    \fig{width = 0.50\textwidth}{figs/liveness-causal.png}
+    \fig{width = 0.70\textwidth}{figs/liveness-causal}
 
     \pause
     Transaction \causalcolor{$t_{2}$} may never become visible at $d_{3}$.
@@ -284,7 +279,7 @@
     $d_{1}$ crashes before $\causalcolor{t_{1}}$ is replicated to $d_{3}$.
 
     \vspace{0.20cm}
-    \fig{width = 0.50\textwidth}{figs/liveness-causal.png}
+    \fig{width = 0.70\textwidth}{figs/liveness-causal}
 
     \pause
     $d_{2}$ need to \red{forward} causal transactions to other data centers.
@@ -298,7 +293,7 @@
     $d_{1}$ crashes before $\causalcolor{t_{1}}$ is replicated to $d_{3}$.
 
     \vspace{0.50cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong}
 
     \pause
     \vspace{0.30cm}
@@ -317,7 +312,7 @@
     {\footnotesize (eventually become visible at all correct data centers)}
 
     \vspace{0.30cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong}
 
     \pause
     $\causalcolor{t_{1}}$ will eventually be visible at $d_{3}$. \\[3pt]
@@ -336,7 +331,7 @@
     \causalcolor{causal dependencies} to become \red{uniform} before committing.
 
     \vspace{0.30cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong}
 
     \pause
     \vspace{0.20cm}
@@ -358,7 +353,7 @@
     \red{uniform snapshot} that may be slightly in the past.
 
     \vspace{0.50cm}
-    \fig{width = 1.00\textwidth}{figs/liveness-strong.png}
+    \fig{width = 1.00\textwidth}{figs/liveness-strong}
 
     \pause
     \vspace{0.30cm}
