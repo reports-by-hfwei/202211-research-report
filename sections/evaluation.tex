@@ -1,45 +1,63 @@
 % evaluation.tex
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{}
+\begin{frame}{$Q_{1}:$ Does \unistore{} Combine Causal and Strong Consistency Effectively?}
   \begin{center}
-    {\Large Evaluation}
-  \end{center}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Performance of \unistore}
-  \begin{center}
-    Throughput: 5\% and 259\% higher than \textsc{RedBlue} and \textsc{Strong}
+    \uncover<2->{Throughput: $72\%$ and $183\%$ higher than \textsc{RedBlue} and \textsc{Strong}, \\[3pt]
+      $45\%$ lower than \textsc{Causal}}
 
     \fig{width = 0.80\textwidth}{figs/rubis}
     \vspace{-0.20cm}
-    {\small RUBiS benchmark: throughput vs. average latency.}
+    {\footnotesize RUBiS benchmark: throughput vs. average latency.}
 
     \vspace{0.50cm}
-    Latency: 24ms vs. 32ms of \textsc{RedBlue} and 162ms of \textsc{Strong}
+    \uncover<3->{Average latency: $16.5$ms of \unistore{} \emph{vs.} $80.4$ms of \textsc{Strong}, \\[3pt]
+      comparable to that of \textsc{RedBlue}}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Scalability of \unistore}
+\begin{frame}{$Q_{2}:$ How does \unistore{} Scale with the Number of Machines?}
   \begin{center}
+    \uncover<2->{Scales almost linearly (top): \\[3pt]
+      $9.76\%$ throughput drop compared to the optimal scalability.
+    }
+
+    \vspace{0.30cm}
     \fig{width = 0.50\textwidth}{figs/scalability.png}
-    {\small Scalability when varying the ratio of strong transactions.}
+    \vspace{-0.20cm}
+    {\footnotesize Scalability when varying the ratio of strong transactions
+      with uniform data access (top) and under contention (bottom).}
 
-    \vspace{0.50cm}
-    \unistore{} scales horizontally and almost linearly, \\[3pt]
-    i.e., with the number of machines ({partitions}) in each data center.
+    \vspace{0.30cm}
+    \uncover<3->{Under contention (bottom): $17.15\%$ throughput drop}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Evaluation}
-  \begin{center}
-    For more evaluations, please refer to the paper.
-  \end{center}
+\begin{frame}{$Q_{3}:$ What is the Cost of Uniformity?}
+  \begin{columns}
+    \column{0.50\textwidth}
+    \begin{center}
+      % \fig{width = 0.50\textwidth}{figs/}
+      \vspace{-0.20cm}
+      {\footnotesize Throughput penalty of tracking uniformity}
+
+      \vspace{0.30cm}
+      $7.97\%$ throughput drop on average
+    \end{center}
+    \column{0.50\textwidth}
+    \pause
+    \begin{center}
+      % \fig{width = 0.50\textwidth}{figs/}
+      \vspace{-0.20cm}
+      {\footnotesize Update visibility delay (ms)}
+
+      \vspace{0.30cm}
+      $5$ms $\sim$ $92$ms at the $90^{\text{th}}$ percentile
+    \end{center}
+  \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%

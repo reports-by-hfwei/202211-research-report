@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Data Consistency Problem}
 	\begin{center}
-		The ``Data Partition + Data Replication'' Architecture
+		The Classic ``Data Partition + Data Replication'' Architecture
 		\fig{width = 0.60\textwidth}{figs/partition-replication}
 
 		\pause
@@ -77,7 +77,8 @@
 		\end{center}
 	\end{columns}
 
-	\fig{width = 0.10\textwidth}{figs/strong-weak}
+	\pause
+	\fig{width = 0.15\textwidth}{figs/strong-weak}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -87,10 +88,11 @@
 		On the data consistency theory around consistency models:
 	\end{center}
 
+	\pause
 	\begin{columns}
 		\column{0.05\textwidth}
 		\column{0.90\textwidth}
-		\begin{description}[Computability]
+		\begin{description}[<+->]
 			\setlength{\itemsep}{8pt}
 			\item[Computability:] What is possible or impossible?
 			\item[Protocol:] How to design fast, scalable, and fault-tolerant protocols?
@@ -111,7 +113,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches (I)}
 	\begin{center}
-		Read/Write Register\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2014$) \\[6pt]
+		On read/write registers\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2014$) \\[6pt]
 
 		\fig{width = 0.60\textwidth}{figs/nosql-kv}
 		Distributed Non-transactional Key-Value Stores
@@ -134,7 +136,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches (II)}
 	\begin{center}
-		Replicated Data Types\footnote{复制数据类型，是经典数据类型的分布式版本，如列表，集合，队列等。} ($\ge 2017$) \\[6pt]
+		On replicated data types\footnote{复制数据类型，是经典数据类型的分布式版本，如列表，集合，队列等。} ($\ge 2017$) \\[6pt]
 
 		\begin{columns}[c]
 			\column{0.50\textwidth}
@@ -164,8 +166,8 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches (III)}
 	\begin{center}
-		Distributed Transactions\footnote{
-			分布式事务。每个事务由一组操作构成，这些操作要么都成功，要么都失败。} ($\ge 2020$)
+		On distributed transactions\footnote{
+			分布式事务。每个事务由一组操作构成，这些操作要么都成功，要么都失败。} ($\ge 2020$) \\[6pt]
 
 		\fig{width = 0.50\textwidth}{figs/transactional-dbs}
 	\end{center}

@@ -25,12 +25,12 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Adding Strong Transactions}
-  Each replica $p^{m}_{d}$ maintains three vectors: \\[5pt]
+  Each replica maintains three vectors: \\[5pt]
 
   \begin{description}[<+->]
     \setlength{\itemsep}{10pt}
-    \item[$\knownVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at $p^{m}_{d}$
-    \item[$\stableVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at the local data center $d$
+    \item[$\knownVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at this replica
+    \item[$\stableVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at its local data center $d$
   \end{description}
 
   \pause

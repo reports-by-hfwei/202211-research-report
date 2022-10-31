@@ -37,12 +37,12 @@
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Tracking What is Replicated Where}
-  Each replica $p^{m}_{d}$ maintains three vectors: \\[5pt]
+  Each replica maintains three vectors: \\[5pt]
 
   \begin{description}[<+->]
     \setlength{\itemsep}{10pt}
-    \item[$\knownVC$:] track the set of transactions replicated at $p^{m}_{d}$
-    \item[$\stableVC$:] track the set of transactions replicated at the local data center $d$
+    \item[$\knownVC$:] track the set of transactions replicated at this replica
+    \item[$\stableVC$:] track the set of transactions replicated at its local data center
     \item[$\uniformVC$:] track the set of transactions replicated at $f + 1$ data centers
   \end{description}
 \end{frame}

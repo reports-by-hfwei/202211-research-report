@@ -31,7 +31,7 @@
       \begin{description}[Challenges (II):]
         \setlength{\itemsep}{8pt}
         \item[Challenges (I):] To ensure \red{liveness} of the system in the presence of data
-          center failures
+          center failures \pause
         \item[Challenges (II):] To provide a rigorous correctness \red{proof} of the protocol
           which is rather complicated
       \end{description}
@@ -51,7 +51,8 @@
     \vspace{0.80cm}
     \noindent I am fully responsible for developing a rigorous correctness proof: \\[3pt]
 
-    \begin{itemize}
+    \pause
+    \begin{itemize}[<+->]
       \item Finished a proof of 20 pages contained in the \textsf{arXiv} version
       \item Identified several nontrivial bugs in the early versions of the
             protocol\footnote{ One of these bugs also exists in the well-known Granola
@@ -252,13 +253,13 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Liveness of \unistore}
   \begin{center}
-    {How to ensure \red{liveness} despite data center failures?}
+    \uncover<2->{How to ensure \red{liveness} despite data center failures?}
     \fig{width = 0.50\textwidth}{figs/design-challenges}
 
     \vspace{0.50cm}
-    A transaction $t \in T$ that is either \purple{strong}
-    or \teal{originates at a correct data center}
-    eventually become \red{visible} at all correct data centers.
+    \uncover<3->{A transaction $t \in T$ that is either \purple{strong}
+      or \teal{originates at a correct data center}
+      eventually become \red{visible} at all correct data centers.}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
