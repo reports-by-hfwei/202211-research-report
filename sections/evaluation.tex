@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{$Q_{1}:$ Does \unistore{} Combine Causal and Strong Consistency Effectively?}
   \begin{center}
-    \uncover<2->{Throughput: $72\%$ and $183\%$ higher than \textsc{RedBlue} and \textsc{Strong}, \\[3pt]
+    \uncover<2->{\blue{Throughput:} $72\%$ and $183\%$ higher than \textsc{RedBlue} and \textsc{Strong}, \\[3pt]
       $45\%$ lower than \textsc{Causal}}
 
     \fig{width = 0.80\textwidth}{figs/rubis}
@@ -11,7 +11,7 @@
     {\footnotesize RUBiS benchmark: throughput vs. average latency.}
 
     \vspace{0.50cm}
-    \uncover<3->{Average latency: $16.5$ms of \unistore{} \emph{vs.} $80.4$ms of \textsc{Strong}, \\[3pt]
+    \uncover<3->{\blue{Average latency:} $16.5$ms of \unistore{} \emph{vs.} $80.4$ms of \textsc{Strong}, \\[3pt]
       comparable to that of \textsc{RedBlue}}
   \end{center}
 \end{frame}
@@ -20,7 +20,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{$Q_{2}:$ How does \unistore{} Scale with the Number of Machines?}
   \begin{center}
-    \uncover<2->{Scales almost linearly (top): \\[3pt]
+    \uncover<2->{Scales almost \blue{linearly} (top): \\[3pt]
       $9.76\%$ throughput drop compared to the optimal scalability.
     }
 
@@ -52,8 +52,8 @@
     \pause
     \begin{center}
       \fig{width = 1.00\textwidth}{figs/updatevisibility}
-      \vspace{-0.20cm}
-      {\footnotesize Update visibility delay (ms)}
+      % \vspace{-0.20cm}
+      % {\footnotesize Update visibility delay (ms)}
 
       \vspace{0.30cm}
       $5$ms $\sim$ $92$ms at the $90^{\text{th}}$ percentile

@@ -8,7 +8,7 @@
     \setlength{\itemsep}{8pt}
     \item Tracking causality ($\commitvc$)
     \item Representing causally consistent snapshots ($\snapshotVC$)
-    \item \red{Tracking what is replicated where}
+    \item \red{Tracking what is replicated where} (for uniformity)
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -16,11 +16,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Tracking What is Replicated Where}
   \begin{center}
-    Make a \red{remote} \causalcolor{causal transaction} visible
-    only \red{after it is uniform}.
+    % Make a \red{remote} \causalcolor{causal transaction} visible
+    % only \red{after it is uniform}.
 
-    \pause
-    \vspace{0.30cm}
+    % \pause
+    % \vspace{0.30cm}
     \begin{definition}[Uniform]
       A transaction is \red{uniform} if both the transaction
       and its causal dependencies are guaranteed to be eventually

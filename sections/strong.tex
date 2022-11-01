@@ -27,13 +27,13 @@
 \begin{frame}{Adding Strong Transactions}
   Each replica maintains three vectors: \\[5pt]
 
-  \begin{description}[<+->]
+  \begin{description} % [<+->]
     \setlength{\itemsep}{10pt}
     \item[$\knownVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at this replica
     \item[$\stableVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at its local data center $d$
   \end{description}
 
-  \pause
+  % \pause
   \vspace{0.50cm}
   We do not extend $\uniformVC$, since the commit protocol for
   \strongcolor{strong} transactions automatically guarantees their uniformity.

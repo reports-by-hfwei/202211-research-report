@@ -67,9 +67,9 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{What is \unistore?}
   \begin{center}
-    \unistore{} is a \red{fast}, \red{scalable}, and \red{fault-tolerant} \\[8pt]
-    \cyan{transactional} distributed key-value store \\[8pt]
-    that supports a \blue{combination of weak and strong consistency}.
+    \unistore{} is a fast, scalable, and \red{fault-tolerant} \\[8pt]
+    transactional distributed key-value store \\[8pt]
+    that supports a \red{combination of weak and strong consistency}.
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -95,7 +95,7 @@
   \begin{itemize}[<+->]
     \setlength{\itemsep}{8pt}
     \item Multiple consistency levels coexist in a store
-    \item Take \causalcolor{weak consistency} as the default and the baseline
+    \item Take \causalcolor{weak consistency} as the default
     \item Programmers can choose the transactions that should be executed under
           \strongcolor{strong consistency} \\[3pt]
           \begin{itemize}
@@ -185,16 +185,16 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{The PoR Approach}
-  \begin{itemize}[<+->]
-    \setlength{\itemsep}{8pt}
-    \item The programmer provides a symmetric \strongcolor{conflict relation} $\conflict$
-          on transactions.
-    \item Any transaction involved in the conflict relation is marked
-          \strongcolor{strong}.
-    \item PoR ensures that conflicting transactions are executed serially.
-  \end{itemize}
-\end{frame}
+% \begin{frame}{The PoR Approach}
+%   \begin{itemize}[<+->]
+%     \setlength{\itemsep}{8pt}
+%     \item The programmer provides a symmetric \strongcolor{conflict relation} $\conflict$
+%           on transactions.
+%     \item Any transaction involved in the conflict relation is marked
+%           \strongcolor{strong}.
+%     \item PoR ensures that conflicting transactions are executed serially.
+%   \end{itemize}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -251,12 +251,13 @@
     \uncover<2->{How to ensure \red{liveness} despite data center failures?}
     \fig{width = 0.50\textwidth}{figs/design-challenges}
 
-    \vspace{0.50cm}
-    \uncover<3->{A transaction $t \in T$ that is either \purple{strong}
-      or \teal{originates at a correct data center}
+    \vspace{0.30cm}
+    \uncover<3->{A transaction that is either \purple{strong}
+      or \causalcolor{originates at a correct data center}
       eventually become \red{visible} at all correct data centers.}
   \end{center}
 \end{frame}
+% ~\footnote{某数据中心接收到一个事务，不代表这个事务对该数据中心上的客户``可见''。}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%

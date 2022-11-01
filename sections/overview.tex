@@ -26,7 +26,7 @@
 \begin{frame}{Data Consistency Problem}
 	\begin{center}
 		(Strong) \underline{\red{C}}onsistency, \underline{\red{A}}vailability,
-		\underline{\red{L}}atency、\underline{\red{P}}atition tolerance
+		\underline{\red{L}}atency, \underline{\red{P}}artition tolerance
 	\end{center}
 	\begin{columns}[c]
 		\column{0.60\textwidth}
@@ -89,34 +89,37 @@
 	\end{center}
 
 	\pause
-	\begin{columns}
-		\column{0.05\textwidth}
-		\column{0.90\textwidth}
-		\begin{description}[<+->]
-			\setlength{\itemsep}{8pt}
-			\item[Computability:] What is possible or impossible?
-			\item[Protocol:] How to design fast, scalable, and fault-tolerant protocols?
-			\item[Testing:] What is the complexity? \\[3pt] How to design efficient testing algorithms?
-				% \item[协议验证:] TODO:
-		\end{description}
-		\column{0.05\textwidth}
-	\end{columns}
+	% \begin{columns}
+	% 	\column{0.05\textwidth}
+	% 	\column{0.90\textwidth}
+	\begin{description}[<+->]
+		\setlength{\itemsep}{8pt}
+		\item[Computability:] What is possible or impossible?
+		\item[Specification:] How to define consistency models?
+		\item[Protocol:] How to design a ``good'' protocol? \\[3pt]
+			How to prove its correctness?
+		\item[Testing:] What is the complexity? \\[3pt] How to design efficient testing algorithms?
+			% \item[协议验证:] TODO:
+	\end{description}
+	% 	\column{0.05\textwidth}
+	% \end{columns}
 
-	\pause
-	\vspace{0.50cm}
-	\begin{center}
-		Classic problems with the ever-changing requirements
-	\end{center}
+	% \pause
+	% \vspace{0.50cm}
+	% \begin{center}
+	% 	Classic problems with the ever-changing requirements
+	% \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches (I)}
 	\begin{center}
-		On read/write registers\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2014$) \\[6pt]
+		% On read/write registers\footnote{读写寄存器，也就是读写变量，虽然最初与计算机系统中的``寄存器''概念相关，但已慢慢解耦。} ($\ge 2014$) \\[6pt]
+
+		On non-transactional key-value stores \\[6pt]
 
 		\fig{width = 0.60\textwidth}{figs/nosql-kv}
-		Distributed Non-transactional Key-Value Stores
 	\end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -136,7 +139,7 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{My Researches (II)}
 	\begin{center}
-		On replicated data types\footnote{复制数据类型，是经典数据类型的分布式版本，如列表，集合，队列等。} ($\ge 2017$) \\[6pt]
+		On replicated data types\footnote{复制数据类型，是经典数据结构的分布式版本，如列表，集合，队列等。} ($\ge 2017$) \\[6pt]
 
 		\begin{columns}[c]
 			\column{0.50\textwidth}
