@@ -7,32 +7,32 @@
   \begin{itemize}
     \setlength{\itemsep}{8pt}
     \item Tracking causality ($\commitvc$)
-    \item Representing causally consistent snapshots ($\snapshotVC$)
+          % \item Representing causally consistent snapshots ($\snapshotVC$)
     \item \red{Tracking what is replicated where} (for uniformity)
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Tracking What is Replicated Where}
-  \begin{center}
-    % Make a \red{remote} \causalcolor{causal transaction} visible
-    % only \red{after it is uniform}.
+% \begin{frame}{Tracking What is Replicated Where}
+%   \begin{center}
+%     % Make a \red{remote} \causalcolor{causal transaction} visible
+%     % only \red{after it is uniform}.
 
-    % \pause
-    % \vspace{0.30cm}
-    \begin{definition}[Uniform]
-      A transaction is \red{uniform} if both the transaction
-      and its causal dependencies are guaranteed to be eventually
-      replicated at all correct data centers.
-    \end{definition}
+%     % \pause
+%     % \vspace{0.30cm}
+%     \begin{definition}[Uniform]
+%       A transaction is \red{uniform} if both the transaction
+%       and its causal dependencies are guaranteed to be eventually
+%       replicated at all correct data centers.
+%     \end{definition}
 
-    \pause
-    \vspace{0.50cm}
-    A transaction is considered \red{uniform} \\[3pt]
-    once it is visible at $f + 1$ data centers.
-  \end{center}
-\end{frame}
+%     \pause
+%     \vspace{0.50cm}
+%     A transaction is considered \red{uniform} \\[3pt]
+%     once it is visible at $f + 1$ data centers.
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -49,12 +49,12 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Fault-tolerant Causal Consistency Protocol}
-  \begin{itemize}
-    \setlength{\itemsep}{8pt}
-    \item Causal transactions are executed on a uniform snapshot.
-    \item Read-only transactions returns immediately.
-    \item Update transactions commit using a variant of 2PC protocol.
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Fault-tolerant Causal Consistency Protocol}
+%   \begin{itemize}
+%     \setlength{\itemsep}{8pt}
+%     \item Causal transactions are executed on a uniform snapshot.
+%     \item Read-only transactions returns immediately.
+%     \item Update transactions commit using a variant of 2PC protocol.
+%   \end{itemize}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%

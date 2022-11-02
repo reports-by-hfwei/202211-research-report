@@ -18,7 +18,7 @@
 
   \pause
   \[
-    \commitVC \in [\D \cup \set{\strongcolor{\strongentry}} \to \N]
+    \commitvc \in [\D \cup \set{\strongcolor{\strongentry}} \to \N]
   \]
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -31,49 +31,46 @@
     \setlength{\itemsep}{10pt}
     \item[$\knownVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at this replica
     \item[$\stableVC\text{[\strongcolor{\strongentry}]}$:] track the set of \strongcolor{strong} transactions replicated at its local data center $d$
+    \item[$\uniformVC$:] We do not extend $\uniformVC$, since the commit protocol for
+      \strongcolor{strong} transactions automatically guarantees their uniformity.
   \end{description}
-
-  % \pause
-  \vspace{0.50cm}
-  We do not extend $\uniformVC$, since the commit protocol for
-  \strongcolor{strong} transactions automatically guarantees their uniformity.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Adding Strong Transactions}
-  \begin{itemize}[<+->]
-    \setlength{\itemsep}{8pt}
-    \item A \strongcolor{strong} transaction waits for local causal dependencies to
-          become uniform before committing.
-    \item Uses optimistic concurrency control protocol \\[6pt]
-          \begin{itemize}
-            \setlength{\itemsep}{6pt}
-            \item First \emph{speculatively} execute \strongcolor{strong} transactions locally
-            \item Then certify them globally using a \emph{transaction certification service}
-                  (TCS)
-          \end{itemize}
-  \end{itemize}
-\end{frame}
+% \begin{frame}{Adding Strong Transactions}
+%   \begin{itemize}[<+->]
+%     \setlength{\itemsep}{8pt}
+%     \item A \strongcolor{strong} transaction waits for local causal dependencies to
+%           become uniform before committing.
+%     \item Uses optimistic concurrency control protocol \\[6pt]
+%           \begin{itemize}
+%             \setlength{\itemsep}{6pt}
+%             \item First \emph{speculatively} execute \strongcolor{strong} transactions locally
+%             \item Then certify them globally using a \emph{transaction certification service}
+%                   (TCS)
+%           \end{itemize}
+%   \end{itemize}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Strong Consistency Protocol: Commit}
-  \begin{center}
-    \begin{columns}
-      \column{0.45\textwidth}
-      \fig{width = 1.00\textwidth}{figs/tcs}
-      \column{0.55\textwidth}
-      \fig{width = 1.00\textwidth}{figs/multicast}
-    \end{columns}
+% \begin{frame}{Strong Consistency Protocol: Commit}
+%   \begin{center}
+%     \begin{columns}
+%       \column{0.45\textwidth}
+%       \fig{width = 1.00\textwidth}{figs/tcs}
+%       \column{0.55\textwidth}
+%       \fig{width = 1.00\textwidth}{figs/multicast}
+%     \end{columns}
 
-    \vspace{1.00cm}
-    \begin{itemize}
-      \setlength{\itemsep}{8pt}
-      \item 2PC across partitions
-      \item Paxos among replicas of each partition
-      \item Uses white-box optimizations that minimize the commit latency
-    \end{itemize}
-  \end{center}
-\end{frame}
+%     \vspace{1.00cm}
+%     \begin{itemize}
+%       \setlength{\itemsep}{8pt}
+%       \item 2PC across partitions
+%       \item Paxos among replicas of each partition
+%       \item Uses white-box optimizations that minimize the commit latency
+%     \end{itemize}
+%   \end{center}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%

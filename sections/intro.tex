@@ -5,7 +5,7 @@
   \begin{center}
     \fig{width = 0.80\textwidth}{figs/unistore-atc21}
     \vspace{0.20cm}
-    \red{ATC'2021 (CCF A)}
+    \red{USENIX ATC'2021}
 
     \vspace{1.00cm}
     \unistore{} is the first \red{fault-tolerant} and scalable \cyan{transactional} data store
@@ -79,31 +79,31 @@
   \begin{center}
     \causalcolor{Weak Consistency:}
     \uncover<2->{low latency, high availability, \\[3pt]
-      but unable to preserve critical application invariants}
+      but hard to preserve application invariants}
 
     \uncover<4->{\fig{width = 0.40\textwidth}{figs/best-of-both-worlds}}
 
     \strongcolor{Strong Consistency:}
-    \uncover<3->{easy to preserve critical application invariants, \\[3pt]
+    \uncover<3->{easy to preserve application invariants, \\[3pt]
       but require global synchronization among data centers}
   \end{center}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{The \textsc{Uni-} Approach}
-  \begin{itemize}[<+->]
-    \setlength{\itemsep}{8pt}
-    \item Multiple consistency levels coexist in a store
-    \item Take \causalcolor{weak consistency} as the default
-    \item Programmers can choose the transactions that should be executed under
-          \strongcolor{strong consistency} \\[3pt]
-          \begin{itemize}
-            \item e.g., if the execution of a set of transactions may violate the application
-                  violations
-          \end{itemize}
-  \end{itemize}
-\end{frame}
+% \begin{frame}{The \textsc{Uni-} Approach}
+%   \begin{itemize}[<+->]
+%     \setlength{\itemsep}{8pt}
+%     \item Multiple consistency levels coexist in a store
+%     \item Take \causalcolor{weak consistency} as the default
+%     \item Programmers can choose the transactions that should be executed under
+%           \strongcolor{strong consistency} \\[3pt]
+%           \begin{itemize}
+%             \item e.g., if the execution of a set of transactions may violate the application
+%                   invariants
+%           \end{itemize}
+%   \end{itemize}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
@@ -126,15 +126,18 @@
           \end{itemize}
           \pause
     \item Programmers use \strongcolor{strong} transactions to enforce orders between
-          some causally independent transactions.
+          some conflicting causally independent transactions.
+          \begin{itemize}
+            \item Either $t$ is visible to $t'$ or $t'$ is visible to $t$.
+          \end{itemize}
   \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
-\begin{frame}{\cc}
-  \fig{width = 0.50\textwidth}{figs/cc-illustration}
-\end{frame}
+% \begin{frame}{\cc}
+%   \fig{width = 0.50\textwidth}{figs/cc-illustration}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%
