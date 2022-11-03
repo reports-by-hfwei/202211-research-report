@@ -47,20 +47,21 @@
     \fig{width = 0.80\textwidth}{figs/unistore-atc21}
     \vspace{0.20cm}
     \red{ATC'2021 (CCF A)}
-
-    \pause
-    \vspace{0.80cm}
-    \noindent I am fully responsible for developing a rigorous correctness proof: \\[3pt]
-
-    \pause
-    \begin{itemize}[<+->]
-      \item Finished a proof of 20 pages contained in the \textsf{arXiv} version
-      \item Identified several nontrivial bugs in the early versions of the
-            protocol\footnote{ One of these bugs also exists in the well-known Granola
-              protocol proposed by James Cowling and Barbara Liskov, something that had gone
-              unnoticed for 10 years.}, and proposed solutions to fix them
-    \end{itemize}
   \end{center}
+
+  \pause
+  \vspace{0.30cm}
+  I am responsible for developing a rigorous correctness proof \\[3pt]
+  \textcolor{gray}{\footnotesize and designing part of the protocol}:
+
+  \pause
+  \begin{itemize}[<+->]
+    \item Finished a proof of 20 pages contained in the \textsf{arXiv} version
+    \item Identified several nontrivial bugs in the early versions of the
+          protocol\footnote{ One of these bugs also exists in the well-known Granola
+            protocol proposed by James Cowling and Barbara Liskov, something that had gone
+            unnoticed for 10 years.}, and proposed solutions to fix them
+  \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
 
@@ -128,7 +129,7 @@
     \item Programmers use \strongcolor{strong} transactions to enforce orders between
           some conflicting causally independent transactions.
           \begin{itemize}
-            \item Either $t$ is visible to $t'$ or $t'$ is visible to $t$.
+            \item Either $t_{1}$ is visible to $t_{2}$ or $t_{2}$ is visible to $t_{1}$.
           \end{itemize}
   \end{itemize}
 \end{frame}
@@ -175,7 +176,6 @@
     \fig{width = 0.60\textwidth}{figs/alice-bob}
     \red{Invariant: $\textsf{balance} \ge 0$}
 
-    \pause
     \vspace{0.50cm}
     {However, \cc{} also allows two causally independent \strongcolor{\textsc{withdraw}} to execute concurrently,
       without knowing each other.}
@@ -228,6 +228,7 @@
   \vspace{0.30cm}
   \ncite{NonSeq:SIAMJComput1998}
 
+  \vspace{-0.10cm}
   \fig{width = 0.30\textwidth}{figs/multiple-consistency-levels}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%
@@ -251,11 +252,12 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Liveness of \unistore}
   \begin{center}
-    \uncover<2->{How to ensure \red{liveness} despite data center failures?}
+    {How to ensure \red{liveness} despite data center failures?}
     \fig{width = 0.50\textwidth}{figs/design-challenges}
 
+    \pause
     \vspace{0.30cm}
-    \uncover<3->{A transaction that is either \purple{strong}
+    {A transaction that is either \purple{strong}
       or \causalcolor{originates at a correct data center}
       eventually become \red{visible} at all correct data centers.}
   \end{center}
@@ -285,7 +287,6 @@
     \vspace{0.20cm}
     \fig{width = 0.70\textwidth}{figs/liveness-causal}
 
-    \pause
     $d_{2}$ need to \red{forward} causal transactions to other data centers.
   \end{center}
 \end{frame}
@@ -353,16 +354,11 @@
 %%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Minimizing the Latency of Strong Transactions}
   \begin{center}
-    Let \causalcolor{causal transactions} be executed on an (almost)
-    \red{uniform snapshot} that may be slightly in the past.
+    Make a \red{remote} \causalcolor{causal transaction} visible
+    only \red{after it is uniform}.
 
     \vspace{0.50cm}
     \fig{width = 1.00\textwidth}{figs/liveness-strong}
-
-    \pause
-    \vspace{0.30cm}
-    Make a \red{remote} \causalcolor{causal transaction} visible
-    only \red{after it is uniform}.
 
     \pause
     \vspace{0.30cm}
